@@ -23,6 +23,15 @@ const userService = {
 
     return { token };
   },
+  getOne: async (id) => {
+    const user = await User.findByPk(id, {
+      attributes: { exclude: ['password'] },
+    });
+
+    if (!user) throw new CustomError(404, 'User does not exist');
+
+    return user;
+  },
 };
 
 module.exports = userService;
