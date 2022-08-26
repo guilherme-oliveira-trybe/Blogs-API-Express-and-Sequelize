@@ -2,13 +2,11 @@ const { CustomError } = require('../errors');
 const { Category } = require('../database/models');
 
 const categoryService = {
-  // getAll: async () => {
-  //   const result = await User.findAll({
-  //     attributes: { exclude: ['password'] },
-  //   });
+  getAll: async () => {
+    const result = await Category.findAll();
 
-  //   return result;
-  // },
+    return result;
+  },
   create: async ({ name }) => {
     const category = await Category.findOne({ where: { name } });
 
