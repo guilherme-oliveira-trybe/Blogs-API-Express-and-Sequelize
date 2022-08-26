@@ -1,11 +1,6 @@
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
-const { CustomError } = require('../errors');
 const { User } = require('../database/models');
-
-const { JWT_SECRET } = process.env;
-
-if (!JWT_SECRET) throw new CustomError(401, 'JWT_KEY não foi definido no .env');
+const { tokenHelper } = require('../helpers');
+const { CustomError } = require('../errors');
 
 const loginService = {
   login: async ({ email, password }) => {
@@ -13,7 +8,7 @@ const loginService = {
 
     if (!user || user.password !== password) throw new CustomError(400, 'Invalid fields');
 
-    const token = jwt.sign({ email }, JWT_SECRET);
+    const token = tokenHelper.createToken({ email });
 
     return { token };
   },
