@@ -13,8 +13,12 @@ const tokenHelper = {
     return token;
   },
   verifyToken: (token) => {
-    const dados = jwt.verify(token, JWT_SECRET);
-    return dados;
+    try {
+      const dados = jwt.verify(token, JWT_SECRET);
+      return dados;
+    } catch (error) {
+      if (error) throw new CustomError(401, 'Expired or invalid token');
+    }
   },
 };
 
