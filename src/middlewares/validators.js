@@ -28,6 +28,17 @@ const validators = {
 
     next();
   },
+  bodyCategory: async (req, _res, next) => {
+    const schema = Joi.object({
+      name: Joi.string().min(1).required(),
+    });
+
+    const { error } = schema.validate(req.body);
+
+    if (error) throw new CustomError(400, error.details[0].message);
+
+    next();
+  },
 };
 
 module.exports = validators;
