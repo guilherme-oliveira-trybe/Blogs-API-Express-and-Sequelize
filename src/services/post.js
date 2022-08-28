@@ -1,14 +1,25 @@
 const { CustomError } = require('../errors');
-const { BlogPost, PostCategory, User, sequelize } = require('../database/models');
+const { BlogPost, PostCategory, User, Category, sequelize } = require('../database/models');
 
 const postService = {
-  // getAll: async () => {
-  //   const result = await User.findAll({
-  //     attributes: { exclude: ['password'] },
-  //   });
+  getAll: async () => {
+    const result = await BlogPost.findAll({
+      include: [{
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      {
+        model: Category,
+        as: 'categories',
+        through: {
+          attributes: [],
+        },
+      }],
+    });
 
-  //   return result;
-  // },
+    return result;
+  },
   create: async ({ title, content, userEmail, categoryIds }) => {
     const { id: userId } = await User.findOne({ where: { email: userEmail } });
     

@@ -1,11 +1,11 @@
 const { postService } = require('../services');
 
 const postController = {
-  // getAll: async (_req, res) => {
-  //   const result = await categoryService.getAll();
+  getAll: async (_req, res) => {
+    const result = await postService.getAll();
 
-  //   return res.status(200).json(result);
-  // },
+    return res.status(200).json(result);
+  },
   create: async (req, res) => {
     const { title, content, categoryIds } = req.body;
     const { userEmail } = req;
