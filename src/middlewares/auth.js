@@ -7,8 +7,9 @@ const auth = {
 
     if (!authorization) throw new CustomError(401, 'Token not found');
 
-    tokenHelper.verifyToken(authorization);
-    
+    const { email } = tokenHelper.verifyToken(authorization);
+    req.userEmail = email;
+
     next();
   },
 };
