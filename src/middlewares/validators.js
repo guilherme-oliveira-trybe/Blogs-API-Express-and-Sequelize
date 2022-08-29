@@ -52,6 +52,18 @@ const validators = {
 
     next();
   },
+  bodyPostUpdate: async (req, _res, next) => {
+    const schema = Joi.object({
+      title: Joi.string().required(),
+      content: Joi.string().required(),
+    });
+
+    const { error } = schema.validate(req.body);
+
+    if (error) throw new CustomError(400, 'Some required fields are missing');
+
+    next();
+  },
 };
 
 module.exports = validators;
