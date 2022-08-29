@@ -19,6 +19,15 @@ const postController = {
 
     res.status(200).json(result);
   },
+  update: async (req, res) => {
+    const { title, content } = req.body;
+    const { id } = req.params;
+    const { userEmail } = req;
+
+    const result = await postService.update({ userEmail, title, content, id });
+
+    return res.status(200).json(result);
+  },
 };
 
 module.exports = postController;

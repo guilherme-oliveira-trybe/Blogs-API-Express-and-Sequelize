@@ -4,8 +4,9 @@ const { validators, auth } = require('../middlewares');
 
 const postRoute = express.Router();
 
-postRoute.post('/', auth.verify, validators.bodyPost, postController.create);
 postRoute.get('/', auth.verify, postController.getAll);
 postRoute.get('/:id', auth.verify, postController.getOne);
+postRoute.post('/', auth.verify, validators.bodyPost, postController.create);
+postRoute.put('/:id', auth.verify, validators.bodyPostUpdate, postController.update);
 
 module.exports = postRoute;

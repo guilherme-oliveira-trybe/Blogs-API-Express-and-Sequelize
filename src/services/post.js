@@ -60,6 +60,30 @@ const postService = {
 
     return post;
   },
+  update: async ({ userEmail, title, content, id: postId }) => {
+    const { id } = await User.findOne({ where: { email: userEmail } });
+    const post = await BlogPost.findByPk(postId);
+
+    if (id !== post.userId) throw new CustomError(401, 'Unauthorized user');
+
+    await BlogPost.update({ title, content }, { where: { id: postId } });
+
+    const postUpdated = await BlogPost.findByPk(postId, { include: [{
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      {
+        model: Category,
+        as: 'categories',
+        through: {
+          attributes: [],
+        },
+      }],
+    });
+
+    return postUpdated;
+  },
 };
 
 module.exports = postService;
