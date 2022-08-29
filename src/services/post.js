@@ -40,15 +40,26 @@ const postService = {
     
     return post;
   },
-  // getOne: async (id) => {
-  //   const user = await User.findByPk(id, {
-  //     attributes: { exclude: ['password'] },
-  //   });
+  getOne: async (id) => {
+    const post = await BlogPost.findByPk(id, {
+      include: [{
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      {
+        model: Category,
+        as: 'categories',
+        through: {
+          attributes: [],
+        },
+      }],
+    });
 
-  //   if (!user) throw new CustomError(404, 'User does not exist');
+    if (!post) throw new CustomError(404, 'Post does not exist');
 
-  //   return user;
-  // },
+    return post;
+  },
 };
 
 module.exports = postService;

@@ -13,12 +13,12 @@ const postController = {
 
     return res.status(201).json(result);
   },
-  // getOne: async (req, res) => {
-  //   const { id } = req.params;
-  //   const result = await userService.getOne(id);
+  getOne: async (req, res) => {
+    const { id } = req.params;
+    const result = await postService.getOne(id);
 
-  //   res.status(200).json(result);
-  // },
+    res.status(200).json(result);
+  },
 };
 
 module.exports = postController;
