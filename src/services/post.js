@@ -84,6 +84,15 @@ const postService = {
 
     return postUpdated;
   },
+  delete: async ({ userEmail, id: postId }) => {
+    const { id } = await User.findOne({ where: { email: userEmail } });
+    const post = await BlogPost.findByPk(postId);
+
+    if (!post) throw new CustomError(404, 'Post does not exist');
+    if (id !== post.userId) throw new CustomError(401, 'Unauthorized user');
+
+    return BlogPost.destroy({ where: { id: postId } });
+  },
 };
 
 module.exports = postService;

@@ -17,7 +17,7 @@ const postController = {
     const { id } = req.params;
     const result = await postService.getOne(id);
 
-    res.status(200).json(result);
+    return res.status(200).json(result);
   },
   update: async (req, res) => {
     const { title, content } = req.body;
@@ -27,6 +27,14 @@ const postController = {
     const result = await postService.update({ userEmail, title, content, id });
 
     return res.status(200).json(result);
+  },
+  delete: async (req, res) => {
+    const { id } = req.params;
+    const { userEmail } = req;
+
+    await postService.delete({ userEmail, id });
+
+    return res.status(204).end();
   },
 };
 
