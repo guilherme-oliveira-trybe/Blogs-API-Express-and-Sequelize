@@ -20,6 +20,28 @@ const postService = {
 
     return result;
   },
+  getBySearchTerm: async (searchTerm) => {
+    const allPosts = await BlogPost.findAll({ include: [{
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      },
+      {
+        model: Category,
+        as: 'categories',
+        through: {
+          attributes: [],
+        },
+      }],
+    });
+    if (!searchTerm) return allPosts;
+    
+    const result = await allPosts
+    .filter((p) => p.title.includes(searchTerm) || p.content.includes(searchTerm));
+
+    if (!result) return [];    
+    return result;
+  },
   create: async ({ title, content, userEmail, categoryIds }) => {
     const { id: userId } = await User.findOne({ where: { email: userEmail } });
     

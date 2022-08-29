@@ -6,6 +6,11 @@ const postController = {
 
     return res.status(200).json(result);
   },
+  getBySearchTerm: async (req, res) => {
+    const { q: searchTerm } = req.query;
+    const result = await postService.getBySearchTerm(searchTerm);
+    return res.status(200).json(result);
+  },
   create: async (req, res) => {
     const { title, content, categoryIds } = req.body;
     const { userEmail } = req;
