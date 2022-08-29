@@ -32,6 +32,11 @@ const userService = {
 
     return user;
   },
+  delete: async ({ userEmail }) => {
+    const { id } = await User.findOne({ where: { email: userEmail } });
+
+    return User.destroy({ where: { id } });
+  },
 };
 
 module.exports = userService;

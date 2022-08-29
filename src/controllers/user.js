@@ -18,6 +18,13 @@ const userController = {
 
     res.status(200).json(result);
   },
+  delete: async (req, res) => {
+    const { userEmail } = req;
+
+    await userService.delete({ userEmail });
+
+    return res.status(204).end();
+  },
 };
 
 module.exports = userController;
