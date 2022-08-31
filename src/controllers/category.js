@@ -12,12 +12,6 @@ const categoryController = {
 
     return res.status(201).json(result);
   },
-  // getOne: async (req, res) => {
-  //   const { id } = req.params;
-  //   const result = await userService.getOne(id);
-
-  //   res.status(200).json(result);
-  // },
 };
 
 module.exports = categoryController;
