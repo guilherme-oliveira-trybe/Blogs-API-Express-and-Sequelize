@@ -1,30 +1,61 @@
 # Blogs API 🖥
 
-Consiste em uma API e um banco de dados para produção de conteúdo para um blog. 
+Consiste em uma API e um banco de dados para produção de conteúdo para um blog. É possível fazer login, e após isso gerenciar os posts
+atrelados ao seu user.
 
-* Contruída com Node.js, Express, Sequelize com MySQL e Docker
+* Contruída com Node.js, Express, JWT, Sequelize com MySQL e Docker
 * Utilizando as práticas do REST
 * Aplicada Arquitetura de Software, com as camadas de Modelo, Serviço e de Controladores
 
 
 ### Instruções
 
-- Para rodar o repositório localmente, realize o clone do projeto e utilize os comandos a seguir para inicializar o Docker, instalar as dependências e configurar o banco de dados:
+## Variáveis de Ambiente
 
+Para rodar esse projeto sem utilizar Docker, você vai precisar adicionar as 
+seguintes variáveis de ambiente no seu .env
+
+`NODE_ENV`
+`API_PORT`
+
+`MY_SQL_HOST`
+`MY_SQL_USER`
+`MY_SQL_PASSWORD`
+`MY_SQL_DB_NAME`
+`MY_SQL_PORT`
+
+`JWT_SECRET`
+
+## Rodando localmente
+
+Clone o projeto
+
+```bash
+  git clone git@github.com:pedropereiradev/blogs-api.git
 ```
-npm run prestart // para criar o banco de dados e as migrações
-npm run seed // para popular o banco de dados
+
+Entre no diretório do projeto
+
+```bash
+  cd blogs-api
+```
+
++ Utilizando Docker:
+```bash
 docker-compose up -d --build
-docker attach store_manager
-npm install // para instalar as dependências
+docker exec -it blogs_api bash
+npm install
+npm start
 ```
 
-E utilize os comandos a seguir para executar a aplicação:
++ Rodando Localmente:
 
-```
-npm start // para iniciar a aplicação
-ou
-npm run debug // para iniciar a aplicação em ambiente de desevilvimento
+Necessário configurar as variáveis de ambiente conforme documentação antes
+de rodar o projeto
+
+```bash
+  npm install
+  npm start
 ```
 
 ### Endpoints
