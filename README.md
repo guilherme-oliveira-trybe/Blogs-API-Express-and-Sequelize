@@ -31,7 +31,7 @@ seguintes variáveis de ambiente no seu .env
 Clone o projeto
 
 ```bash
-  git@github.com:guilherme-oliveira-trybe/Blogs-API-Express-and-Sequelize.git
+  git clone git@github.com:guilherme-oliveira-trybe/Blogs-API-Express-and-Sequelize.git
 ```
 
 Entre no diretório do projeto
