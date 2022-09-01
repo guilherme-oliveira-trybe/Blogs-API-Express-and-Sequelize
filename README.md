@@ -8,9 +8,9 @@ atrelados ao seu user.
 * Aplicada Arquitetura de Software, com as camadas de Modelo, Serviço e de Controladores
 
 
-### Instruções
+## Instruções
 
-## Variáveis de Ambiente
+### Variáveis de Ambiente
 
 Para rodar esse projeto sem utilizar Docker, você vai precisar adicionar as 
 seguintes variáveis de ambiente no seu .env
@@ -26,18 +26,18 @@ seguintes variáveis de ambiente no seu .env
 
 `JWT_SECRET`
 
-## Rodando localmente
+### Rodando localmente
 
 Clone o projeto
 
 ```bash
-  git clone git@github.com:pedropereiradev/blogs-api.git
+  git@github.com:guilherme-oliveira-trybe/Blogs-API-Express-and-Sequelize.git
 ```
 
 Entre no diretório do projeto
 
 ```bash
-  cd blogs-api
+  cd Blogs-API-Express-and-Sequelize
 ```
 
 + Utilizando Docker:
